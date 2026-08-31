@@ -1,5 +1,13 @@
 export { Navbar } from './Navbar';
 export { Header } from './Header';
-export { Section } from './Section';
-export { ContactForm } from './ContactForm';
 export { Footer } from './Footer';
+export { ContactForm } from './ContactForm';
+export { OverviewStrip } from './OverviewStrip';
+export { SectionShell } from './SectionShell';
+export { ContentBlock } from './ContentBlock';
+export { CompareCards } from './CompareCards';
+export { PortRangeVisual } from './PortRangeVisual';
+export { ProtocolGrid } from './ProtocolGrid';
+export { OsiStack } from './OsiStack';
+export { TopicImage } from './TopicImage';
+export { PortsIcon, ProtocolsIcon, LayersIcon } from './icons';

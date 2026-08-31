@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { useContactForm } from '../../hooks/useContactForm';
 
-const inputBaseClasses = 'rounded-lg border px-3 py-2.5 font-sans text-sm outline-none focus:border-slate-500';
+const inputBaseClasses =
+  'w-full rounded-lg border bg-white px-3.5 py-3 text-sm text-ink-800 outline-none placeholder:text-ink-400 focus:border-ink-600';
 
 export function ContactForm() {
   const { t } = useTranslation();
@@ -15,73 +18,80 @@ export function ContactForm() {
 
   const isSubmitting = status === 'submitting';
 
+  useEffect(() => {
+    if (status === 'success') {
+      toast.success(t('contact.successMessage'));
+    } else if (status === 'error') {
+      toast.error(t('contact.errorMessage'));
+    }
+  }, [status, t]);
+
   return (
-    <section id="contact" className="bg-slate-100 px-4 py-14 pb-18 sm:px-8">
-      <div className="mx-auto max-w-lg text-center">
-        <h2 className="mb-2 text-2xl font-bold text-slate-900">{t('contact.title')}</h2>
-        <p className="mb-8 text-slate-600">{t('contact.subtitle')}</p>
+    <section id="contact" className="scroll-mt-16 border-t border-line bg-paper px-6 py-14 sm:px-20 sm:py-[100px]">
+      <div className="mx-auto max-w-md text-center sm:max-w-[560px]">
+        <h2 className="font-display text-[22px] text-ink-900 sm:text-[30px]">{t('contact.title')}</h2>
+        <p className="mx-auto mt-3.5 max-w-[440px] text-sm text-ink-600 sm:text-[15px]">{t('contact.subtitle')}</p>
 
-        <form className="flex flex-col gap-4 text-left" onSubmit={handleSubmit} noValidate>
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-slate-800" htmlFor="fullName">
-              {t('contact.fullNameLabel')}
-            </label>
-            <input
-              id="fullName"
-              className={`${inputBaseClasses} ${fieldErrors.fullName ? 'border-red-600' : 'border-slate-300'}`}
-              type="text"
-              placeholder={t('contact.fullNamePlaceholder')}
-              value={formData.fullName}
-              onChange={(event) => updateField('fullName', event.target.value)}
-            />
-            {fieldErrors.fullName && (
-              <span className="text-sm text-red-600">{t('contact.validation.fullNameRequired')}</span>
-            )}
+        <form className="mt-11 flex flex-col gap-[18px] text-left" onSubmit={handleSubmit} noValidate>
+          <div className="flex flex-col gap-[18px] sm:flex-row">
+            <div className="flex-1">
+              <label className="mb-[7px] block text-[13px] font-medium text-ink-800" htmlFor="fullName">
+                {t('contact.fullNameLabel')}
+              </label>
+              <input
+                id="fullName"
+                className={`${inputBaseClasses} ${fieldErrors.fullName ? 'border-red-600' : 'border-line'}`}
+                type="text"
+                placeholder={t('contact.fullNamePlaceholder')}
+                value={formData.fullName}
+                onChange={(event) => updateField('fullName', event.target.value)}
+              />
+              {fieldErrors.fullName && (
+                <span className="mt-1 block text-sm text-red-600">{t('contact.validation.fullNameRequired')}</span>
+              )}
+            </div>
+
+            <div className="flex-1">
+              <label className="mb-[7px] block text-[13px] font-medium text-ink-800" htmlFor="email">
+                {t('contact.emailLabel')}
+              </label>
+              <input
+                id="email"
+                className={`${inputBaseClasses} ${fieldErrors.email ? 'border-red-600' : 'border-line'}`}
+                type="email"
+                placeholder={t('contact.emailPlaceholder')}
+                value={formData.email}
+                onChange={(event) => updateField('email', event.target.value)}
+              />
+              {fieldErrors.email && (
+                <span className="mt-1 block text-sm text-red-600">{t('contact.validation.emailInvalid')}</span>
+              )}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-slate-800" htmlFor="email">
-              {t('contact.emailLabel')}
-            </label>
-            <input
-              id="email"
-              className={`${inputBaseClasses} ${fieldErrors.email ? 'border-red-600' : 'border-slate-300'}`}
-              type="email"
-              placeholder={t('contact.emailPlaceholder')}
-              value={formData.email}
-              onChange={(event) => updateField('email', event.target.value)}
-            />
-            {fieldErrors.email && <span className="text-sm text-red-600">{t('contact.validation.emailInvalid')}</span>}
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-slate-800" htmlFor="message">
+          <div>
+            <label className="mb-[7px] block text-[13px] font-medium text-ink-800" htmlFor="message">
               {t('contact.messageLabel')}
             </label>
             <textarea
               id="message"
-              className={`${inputBaseClasses} min-h-28 resize-y ${
-                fieldErrors.message ? 'border-red-600' : 'border-slate-300'
-              }`}
+              className={`${inputBaseClasses} h-24 resize-none ${fieldErrors.message ? 'border-red-600' : 'border-line'}`}
               placeholder={t('contact.messagePlaceholder')}
               value={formData.message}
               onChange={(event) => updateField('message', event.target.value)}
             />
             {fieldErrors.message && (
-              <span className="text-sm text-red-600">{t('contact.validation.messageTooShort')}</span>
+              <span className="mt-1 block text-sm text-red-600">{t('contact.validation.messageTooShort')}</span>
             )}
           </div>
 
           <button
-            className="mt-2 rounded-lg bg-slate-900 px-4 py-3 text-white transition-colors hover:enabled:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
+            className="font-display mt-1 rounded-lg bg-ink-900 py-3.5 text-[15px] font-semibold tracking-wide text-white transition-colors hover:enabled:bg-ink-800 disabled:cursor-not-allowed disabled:opacity-70"
             type="submit"
             disabled={isSubmitting}
           >
             {isSubmitting ? t('contact.submitting') : t('contact.submitButton')}
           </button>
-
-          {status === 'success' && <p className="mt-2 text-sm text-green-700">{t('contact.successMessage')}</p>}
-          {status === 'error' && <p className="mt-2 text-sm text-red-600">{t('contact.errorMessage')}</p>}
         </form>
       </div>
     </section>

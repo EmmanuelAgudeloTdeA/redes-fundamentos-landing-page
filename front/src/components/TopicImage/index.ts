@@ -1,0 +1,1 @@
+export { TopicImage } from './TopicImage';

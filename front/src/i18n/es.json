@@ -1,32 +1,132 @@
 {
   "site": {
-    "title": "Fundamentos de Redes",
-    "tagline": "Puertos lógicos, protocolos y el modelo OSI explicados de forma sencilla"
+    "title": "Fundamentos de Redes"
   },
   "nav": {
     "logicalPorts": "Puertos Lógicos",
     "protocols": "Protocolos",
     "osiModel": "Modelo OSI",
-    "contact": "Contáctanos"
+    "contact": "Contáctanos",
+    "toggleMenu": "Abrir menú de navegación"
   },
   "header": {
+    "kicker": "Redes de computadores",
     "title": "Entendiendo las redes de computadores",
     "subtitle": "Un recorrido breve por tres conceptos clave para comprender cómo se comunican los dispositivos en una red."
   },
+  "overview": {
+    "items": [
+      {
+        "target": "logical-ports",
+        "title": "Puertos Lógicos",
+        "text": "Cómo un dispositivo distingue qué aplicación recibe cada dato."
+      },
+      {
+        "target": "protocols",
+        "title": "Protocolos",
+        "text": "Las reglas que hacen posible que dos equipos se entiendan."
+      },
+      {
+        "target": "osi-model",
+        "title": "Modelo OSI",
+        "text": "Las siete capas que organizan toda comunicación en red."
+      }
+    ]
+  },
   "logicalPorts": {
     "title": "Puertos Lógicos",
-    "body": "Un puerto lógico es un número que identifica, dentro de un mismo dispositivo, a un proceso o servicio específico que se comunica a través de la red. Mientras que una dirección IP identifica a un equipo dentro de la red, el puerto identifica qué aplicación de ese equipo debe recibir los datos. Los puertos se representan con números de 16 bits, es decir, van desde el 0 hasta el 65535, y se agrupan en tres rangos: los puertos bien conocidos (0-1023), reservados para servicios estándar como HTTP (80), HTTPS (443), FTP (21) o SSH (22); los puertos registrados (1024-49151), asignados a aplicaciones específicas de fabricantes o desarrolladores; y los puertos dinámicos o privados (49152-65535), usados de forma temporal por el sistema operativo para conexiones salientes. Gracias a los puertos, un mismo dispositivo puede mantener múltiples conexiones de red simultáneas sin que los datos de una aplicación se mezclen con los de otra.",
-    "imageAlt": "Diagrama ilustrativo de rangos de puertos lógicos"
+    "imageAlt": "Router transmitiendo datos a distintas aplicaciones a través de puertos numerados",
+    "blocks": [
+      {
+        "title": "¿Qué identifica un puerto?",
+        "body": "Un puerto lógico es un número que identifica, dentro de un mismo dispositivo, a un proceso o servicio específico que se comunica a través de la red.",
+        "compare": [
+          { "label": "Dirección IP", "text": "Identifica al equipo dentro de la red" },
+          { "label": "Puerto", "text": "Identifica qué aplicación de ese equipo recibe los datos" }
+        ]
+      },
+      {
+        "title": "Los tres rangos de puertos",
+        "body": "Los puertos se representan con números de 16 bits, es decir, van desde el 0 hasta el 65535, agrupados en tres rangos según su uso.",
+        "stats": [
+          { "value": "16 bits", "label": "longitud del número" },
+          { "value": "65.536", "label": "puertos posibles" },
+          { "value": "3", "label": "rangos definidos" }
+        ],
+        "ranges": [
+          {
+            "range": "0 – 1023 · Bien conocidos",
+            "label": "Reservados para servicios estándar",
+            "badges": ["HTTP · 80", "HTTPS · 443", "FTP · 21", "SSH · 22"]
+          },
+          {
+            "range": "1024 – 49151 · Registrados",
+            "label": "Asignados a aplicaciones de fabricantes o desarrolladores"
+          },
+          {
+            "range": "49152 – 65535 · Dinámicos / privados",
+            "label": "Uso temporal para conexiones salientes"
+          }
+        ]
+      },
+      {
+        "title": "Por qué son necesarios",
+        "body": "Gracias a los puertos, un mismo dispositivo puede mantener múltiples conexiones de red simultáneas sin que los datos de una aplicación se mezclen con los de otra."
+      }
+    ]
   },
   "protocols": {
     "title": "Protocolos de Red",
-    "body": "Un protocolo de red es un conjunto de reglas y convenciones que define cómo deben comunicarse dos o más dispositivos: qué formato deben tener los datos, cómo se establece la conexión, cómo se detectan errores y cómo se garantiza (o no) la entrega de la información. Sin protocolos, dos dispositivos podrían enviarse señales eléctricas sin ningún significado compartido. Existen protocolos para cada propósito: TCP (Transmission Control Protocol) garantiza una entrega confiable y ordenada de los datos; IP (Internet Protocol) se encarga de direccionar y enrutar los paquetes entre redes; HTTP y HTTPS definen cómo se transfieren páginas web; FTP permite la transferencia de archivos entre un cliente y un servidor; y DNS traduce nombres de dominio legibles por humanos en direcciones IP. Cada protocolo opera en un nivel distinto de abstracción, y es precisamente esa organización por niveles la que describe el modelo OSI.",
-    "imageAlt": "Íconos representativos de distintos protocolos de red"
+    "imageAlt": "Dos equipos intercambiando datos mediante los protocolos TCP/IP",
+    "dnsImageAlt": "Servidor DNS traduciendo un nombre de dominio a una dirección IP",
+    "blocks": [
+      {
+        "title": "¿Qué es un protocolo?",
+        "body": "Un protocolo de red es un conjunto de reglas y convenciones que define cómo deben comunicarse dos o más dispositivos: qué formato deben tener los datos, cómo se establece la conexión y cómo se detectan errores."
+      },
+      {
+        "title": "Por qué son necesarios",
+        "body": "Sin protocolos, dos dispositivos podrían enviarse señales eléctricas sin ningún significado compartido. Cada protocolo opera en un nivel distinto de abstracción — precisamente esa organización por niveles es la que describe el modelo OSI."
+      },
+      {
+        "title": "Protocolos comunes y su función",
+        "cards": [
+          { "acronym": "TCP", "fullName": "Transmission Control Protocol", "description": "Garantiza una entrega confiable y ordenada de los datos." },
+          { "acronym": "IP", "fullName": "Internet Protocol", "description": "Se encarga de direccionar y enrutar los paquetes entre redes." },
+          { "acronym": "HTTP / HTTPS", "fullName": "Hypertext Transfer Protocol", "description": "Definen cómo se transfieren las páginas web." },
+          { "acronym": "FTP", "fullName": "File Transfer Protocol", "description": "Permite la transferencia de archivos entre cliente y servidor." },
+          { "acronym": "DNS", "fullName": "Domain Name System", "description": "Traduce nombres de dominio legibles por humanos en direcciones IP." }
+        ]
+      }
+    ]
   },
   "osiModel": {
     "title": "Modelo OSI",
-    "body": "El modelo OSI (Open Systems Interconnection) es un marco de referencia que divide el proceso de comunicación en red en siete capas, cada una con una responsabilidad específica, desde la transmisión física de bits hasta la interacción con las aplicaciones del usuario. La capa 1, Física, se encarga de la transmisión de señales eléctricas, ópticas o de radio. La capa 2, Enlace de Datos, organiza los bits en tramas y gestiona el direccionamiento físico (MAC). La capa 3, Red, se encarga del direccionamiento lógico y el enrutamiento de paquetes entre redes distintas. La capa 4, Transporte, garantiza (o no) la entrega confiable de los datos de extremo a extremo. La capa 5, Sesión, establece, mantiene y finaliza las sesiones de comunicación. La capa 6, Presentación, se ocupa del formato, cifrado y compresión de los datos. Finalmente, la capa 7, Aplicación, es la más cercana al usuario y define cómo interactúan los programas con la red. Aunque en la práctica muchos protocolos modernos no siguen el modelo OSI de forma estricta, este sigue siendo la herramienta de referencia más usada para enseñar y diagnosticar problemas de red.",
-    "imageAlt": "Diagrama de las siete capas del modelo OSI"
+    "imageAlt": "Diagrama de las siete capas del modelo OSI",
+    "physicalLayerImageAlt": "Detalle de la capa física transmitiendo señales por un cable de red",
+    "blocks": [
+      {
+        "title": "¿Qué es el modelo OSI?",
+        "body": "El modelo OSI (Open Systems Interconnection) es un marco de referencia que organiza el proceso de comunicación en red en siete capas, cada una con una responsabilidad específica, desde la transmisión física de bits hasta la interacción con las aplicaciones del usuario."
+      },
+      {
+        "title": "Las siete capas",
+        "intro": "De la más cercana al usuario a la más cercana al cable físico:",
+        "layers": [
+          { "number": 7, "name": "Aplicación", "description": "La más cercana al usuario; define cómo interactúan los programas con la red" },
+          { "number": 6, "name": "Presentación", "description": "Formato, cifrado y compresión de los datos" },
+          { "number": 5, "name": "Sesión", "description": "Establece, mantiene y finaliza las sesiones de comunicación" },
+          { "number": 4, "name": "Transporte", "description": "Garantiza (o no) la entrega confiable de los datos" },
+          { "number": 3, "name": "Red", "description": "Direccionamiento lógico y enrutamiento entre redes distintas" },
+          { "number": 2, "name": "Enlace de Datos", "description": "Organiza los bits en tramas y gestiona el direccionamiento MAC" },
+          { "number": 1, "name": "Física", "description": "Transmisión de señales eléctricas, ópticas o electromagnéticas" }
+        ]
+      },
+      {
+        "title": "¿Sigue siendo relevante?",
+        "body": "Aunque en la práctica muchos protocolos modernos no siguen el modelo OSI de forma estricta, este sigue siendo la herramienta de referencia más usada para enseñar y diagnosticar problemas de red."
+      }
+    ]
   },
   "contact": {
     "title": "Contáctanos",
