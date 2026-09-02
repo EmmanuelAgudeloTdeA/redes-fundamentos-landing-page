@@ -11,7 +11,7 @@ export function App() {
       <ProtocolsSection />
       <OsiModelSection />
       <ContactForm />
-      <ToastContainer position="bottom-right" autoClose={4000} />
+      <ToastContainer position="top-right" autoClose={4000} />
     </Layout>
   );
 }

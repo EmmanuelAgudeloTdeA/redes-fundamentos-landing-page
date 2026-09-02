@@ -12,7 +12,7 @@ export const app = express();
 // this avoids needing a separate reverse proxy (e.g. IIS/ARR) on the deploy target.
 const staticFilesDirectory = path.join(process.cwd(), 'public');
 
-app.use(cors({ origin: env.corsOrigin }));
+app.use(cors({ origin: env.corsOrigins }));
 app.use(express.json());
 app.use(express.static(staticFilesDirectory));
 app.use('/api', apiRouter);
